@@ -1,23 +1,23 @@
 [
   {
     "id": 1,
-    "name": "ENGINE DIAGNOSTIC",
+    "name": "Shiliguri India",
     "price": "300",
-    "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
-    "img": "https://i.ibb.co/dGDkr4v/1.jpg"
+    "description": "This shot was meant to be more clear and it makes me happy and good mood.",
+    "img": "https://i.ibb.co/W08RTcM/boudhayan-bardhan-BQof-Pr-RIPz-U-unsplash.jpg"
   },
   {
     "id": 2,
-    "name": "WHEEL ALIGNMENT",
+    "name": "Saint Martin Island",
     "price": "100",
-    "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
-    "img": "https://i.ibb.co/tY8dmnP/2.jpg"
+    "description": "Nothing beats sitting beach side in the Caribbean. Just looking at this photo I wanna go back",
+    "img": "https://i.ibb.co/nbT5xNz/saintmartin.jpg"
   },
   {
     "id": 3,
-    "name": "OIL CHANGING",
+    "name": "Maldives Island",
     "price": "150",
-    "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
-    "img": "https://i.ibb.co/Yh04YVw/3.jpg"
+    "description": "Lounge chairs on the beach at the W Hotel luxury resort in the Maldives during sunset.",
+    "img": "https://i.ibb.co/CVgfqx1/maldives.jpg"
   }
 ]

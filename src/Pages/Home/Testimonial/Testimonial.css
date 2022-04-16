@@ -1,0 +1,33 @@
+.testimonial-area {
+  background: url(../../../images/testimonial_bg.png) no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 60vh;
+  background-attachment: fixed;
+}
+.carousel-item {
+  color: #fff;
+  text-align: center;
+}
+
+.testimonial-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 48px;
+  color: #51575b;
+  margin-bottom: 20px;
+  text-shadow: 0px 1px 3px #333;
+}
+.testimonial-area .card-title {
+  text-shadow: 0px 1px 3px #333;
+  font-size: 36px;
+  font-weight: 600;
+}
+.testimonial-area .card-text {
+  font-size: 20px;
+}
+.testimonial-area .card {
+  background-color: transparent;
+  color: #fff;
+  text-align: center;
+}
