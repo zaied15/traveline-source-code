@@ -32,10 +32,6 @@ const Login = () => {
       "Please authorize with a valid account and give permission to Login";
   }
 
-  if (user) {
-    navigate(from, { replace: true });
-  }
-
   const handleLogin = (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
@@ -52,6 +48,10 @@ const Login = () => {
       toast("Please Enter Your Email Address");
     }
   };
+
+  if (user) {
+    navigate(from, { replace: true });
+  }
 
   return (
     <div className="mx-auto register-area d-flex align-items-center justify-content-center">
