@@ -1,0 +1,9 @@
+.register-area {
+  height: 73vh;
+  width: 30%;
+}
+.register-hr {
+  width: 50%;
+  height: 2px;
+  background-color: lightgray;
+}

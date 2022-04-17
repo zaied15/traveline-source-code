@@ -11,7 +11,7 @@ const Service = ({ location }) => {
       <Card.Img className="rounded" variant="top" src={img} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
-        <Card.Title>${price}</Card.Title>
+        <Card.Title>${price}/hr</Card.Title>
         <Card.Text>{description}</Card.Text>
       </Card.Body>
       <button
