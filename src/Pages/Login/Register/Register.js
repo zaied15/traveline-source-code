@@ -7,6 +7,7 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import "./Register.css";
+import Loading from "../../Shared/Loading/Loading";
 
 const Register = () => {
   const [show, setShow] = useState(false);
@@ -19,7 +20,6 @@ const Register = () => {
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [signInWithGoogle, googelUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
-
   const navigate = useNavigate();
 
   // Get Input Value From Registration Form
@@ -43,12 +43,16 @@ const Register = () => {
     }
   };
 
+  if (loading || googleLoading) {
+    return <Loading></Loading>;
+  }
+
   if (user) {
     navigate("/");
   }
   if (googleError) {
     googleError.message =
-      "Please authorize with valid account and give permission to register";
+      "Please authorize with a valid account and give permission to register";
   }
 
   return (

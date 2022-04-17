@@ -4,23 +4,37 @@ import { Button, Form } from "react-bootstrap";
 import {
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../../Shared/Loading/Loading";
 
 const Login = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  const [sendPasswordResetEmail, sending, sendingError] =
-    useSendPasswordResetEmail(auth);
-
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+  if (loading || sending || googleLoading) {
+    return <Loading></Loading>;
+  }
+  if (googleError) {
+    googleError.message =
+      "Please authorize with a valid account and give permission to Login";
+  }
+
+  if (user) {
+    navigate(from, { replace: true });
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -38,10 +52,6 @@ const Login = () => {
       toast("Please Enter Your Email Address");
     }
   };
-
-  if (user) {
-    navigate(from, { replace: true });
-  }
 
   return (
     <div className="mx-auto register-area d-flex align-items-center justify-content-center">
@@ -68,16 +78,19 @@ const Login = () => {
           <p className={`text-danger fw-bold ${error ? "d-block" : "d-none"}`}>
             {error ? error.message : ""}
           </p>
-          <Button variant="success" type="submit">
+          <Button variant="success" type="submit" className="fw-bold px-5">
             Login
           </Button>
           <div>
-            <p
-              onClick={resetPassword}
-              style={{ cursor: "pointer" }}
-              className="d-inline-block"
-            >
-              Forget Password?
+            <p>
+              Forgot Your Password?{" "}
+              <button
+                onClick={resetPassword}
+                style={{ cursor: "pointer" }}
+                className="btn btn-secondary"
+              >
+                Reset Password
+              </button>
             </p>
           </div>
           <p>
@@ -89,8 +102,15 @@ const Login = () => {
           <span className="d-inline-block px-2 fw-bold">or</span>
           <span className="register-hr d-inline-block"></span>
         </div>
+        <p
+          className={`text-danger fw-bold ${
+            googleError ? "d-block" : "d-none"
+          }`}
+        >
+          {googleError ? googleError.message : ""}
+        </p>
         <Button
-          // onClick={() => signInWithGoogle()}
+          onClick={() => signInWithGoogle()}
           variant="dark"
           className="fw-bold text-white"
         >
