@@ -1,25 +1,48 @@
+import { async } from "@firebase/util";
 import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
-  const email = emailRef.current.value;
-  const password = passwordRef.current.value;
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending, sendingError] =
+    useSendPasswordResetEmail(auth);
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (e) => {
     e.preventDefault();
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
     signInWithEmailAndPassword(email, password);
   };
+
+  const resetPassword = async () => {
+    const email = emailRef.current.value;
+    if (email) {
+      await sendPasswordResetEmail(email);
+      toast("Sent email");
+    } else {
+      toast("Please Enter Your Email Address");
+    }
+  };
+
   if (user) {
-    navigate("/about");
+    navigate(from, { replace: true });
   }
+
   return (
     <div className="mx-auto register-area d-flex align-items-center justify-content-center">
       <div className="w-100">
@@ -42,9 +65,21 @@ const Login = () => {
               required
             />
           </Form.Group>
+          <p className={`text-danger fw-bold ${error ? "d-block" : "d-none"}`}>
+            {error ? error.message : ""}
+          </p>
           <Button variant="success" type="submit">
             Login
           </Button>
+          <div>
+            <p
+              onClick={resetPassword}
+              style={{ cursor: "pointer" }}
+              className="d-inline-block"
+            >
+              Forget Password?
+            </p>
+          </div>
           <p>
             Are you new to traveline? <Link to="/register">Register</Link>
           </p>
@@ -62,6 +97,7 @@ const Login = () => {
           Google Sign In
         </Button>
       </div>
+      <ToastContainer />
     </div>
   );
 };

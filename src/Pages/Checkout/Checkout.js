@@ -1,8 +1,9 @@
 import React from "react";
+import "./Checkout.css";
 
 const Checkout = () => {
   return (
-    <div>
+    <div className="checkout">
       <h2>Welcome to checkout page. Thanks for discovering this page.</h2>
     </div>
   );
