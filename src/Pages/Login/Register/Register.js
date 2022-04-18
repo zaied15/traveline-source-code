@@ -31,6 +31,8 @@ const Register = () => {
 
   // Registration Process
   const handleRegistration = (e) => {
+    setShow(false);
+    setTerms(false);
     e.preventDefault();
     if (password === confirmPass) {
       createUserWithEmailAndPassword(email, password);

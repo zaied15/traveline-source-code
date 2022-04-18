@@ -1,6 +1,6 @@
 # [Traveline (A trusted local guide for your safe travel)](https://traveline-firebase-auth.web.app/)
 
-This project hase following features:
+This project has following features:
 
 - An individual local guide service solution.
 - Different packages are available for different places.
