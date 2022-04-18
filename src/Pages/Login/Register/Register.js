@@ -79,6 +79,9 @@ const Register = () => {
           <p className={`text-danger ${customError ? "d-block" : "d-none"}`}>
             {customError ? customError : ""}
           </p>
+          <p className={`text-danger ${error ? "d-block" : "d-none"}`}>
+            {error ? error.message : ""}
+          </p>
           <Form.Check
             onClick={() => setShow(!show)}
             type="checkbox"
