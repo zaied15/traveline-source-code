@@ -1,8 +1,23 @@
-# Getting Started with Create React App
+# [Traveline (A trusted local guide for your safe travel)](https://github.com/facebook/create-react-app)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project hase following features:
 
-## Available Scripts
+- An individual local guide service solution.
+- Different packages are available for different places.
+- Login pages available.
+- Sign-up page available.
+- Protected Checkout page
+- Different sign-in method(email-password and google sign in)
+- Booking form
+
+## Technologies Used
+
+- Bootstrap framework
+- Firebase authentication
+- react-firebase-hook
+- react
+- react router
+- react-toastify
 
 In the project directory, you can run:
 
