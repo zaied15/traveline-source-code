@@ -1,35 +1,31 @@
 import { async } from "@firebase/util";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import {
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
-  useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "../../Shared/Loading/Loading";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
+  const [show, setShow] = useState(false);
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  const [signInWithGoogle, googleUser, googleLoading, googleError] =
-    useSignInWithGoogle(auth);
+
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  if (loading || sending || googleLoading) {
+  if (loading || sending) {
     return <Loading></Loading>;
-  }
-  if (googleError) {
-    googleError.message =
-      "Please authorize with a valid account and give permission to Login";
   }
 
   const handleLogin = (e) => {
@@ -70,11 +66,17 @@ const Login = () => {
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Control
               ref={passwordRef}
-              type="password"
+              type={!show ? "password" : "text"}
               placeholder="Password"
               required
             />
           </Form.Group>
+          <Form.Check
+            onClick={() => setShow(!show)}
+            type="checkbox"
+            label="Show Password"
+            className="mb-3"
+          />
           <p className={`text-danger fw-bold ${error ? "d-block" : "d-none"}`}>
             {error ? error.message : ""}
           </p>
@@ -97,25 +99,7 @@ const Login = () => {
             Are you new to traveline? <Link to="/register">Register</Link>
           </p>
         </Form>
-        <div className="d-flex align-items-center justify-content-center mt-3">
-          <span className="register-hr d-inline-block"></span>
-          <span className="d-inline-block px-2 fw-bold">or</span>
-          <span className="register-hr d-inline-block"></span>
-        </div>
-        <p
-          className={`text-danger fw-bold ${
-            googleError ? "d-block" : "d-none"
-          }`}
-        >
-          {googleError ? googleError.message : ""}
-        </p>
-        <Button
-          onClick={() => signInWithGoogle()}
-          variant="dark"
-          className="fw-bold text-white"
-        >
-          Google Sign In
-        </Button>
+        <SocialLogin></SocialLogin>
       </div>
       <ToastContainer />
     </div>

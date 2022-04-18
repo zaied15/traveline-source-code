@@ -13,15 +13,15 @@ const Header = () => {
   };
   return (
     <header>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img src={logo} alt="Traveline" />{" "}
-            <span className="logo-title">Traveline</span>
+            <span className="logo-title text-white">Traveline</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto ms-5">
+            <Nav className="me-auto ms-5 fw-bold">
               <Nav.Link as={Link} to="/">
                 Home
               </Nav.Link>
@@ -32,9 +32,9 @@ const Header = () => {
                 Blog
               </Nav.Link>
             </Nav>
-            <Nav>
+            <Nav className="fw-bold">
               {user ? (
-                <button onClick={logout} className="btn btn-success">
+                <button onClick={logout} className="btn btn-danger">
                   Signout
                 </button>
               ) : (

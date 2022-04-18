@@ -8,7 +8,7 @@ const Service = ({ location }) => {
   const { name, img, price, description } = location;
   return (
     <Card className="border border-light border-1">
-      <Card.Img className="rounded" variant="top" src={img} />
+      <Card.Img className="rounded" variant="top" height={"400px"} src={img} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Title>${price}/hr</Card.Title>

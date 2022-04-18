@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  useCreateUserWithEmailAndPassword,
-  useSignInWithGoogle,
-} from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import "./Register.css";
 import Loading from "../../Shared/Loading/Loading";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Register = () => {
   const [show, setShow] = useState(false);
@@ -18,8 +16,6 @@ const Register = () => {
   const [customError, setCustomError] = useState("");
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-  const [signInWithGoogle, googelUser, googleLoading, googleError] =
-    useSignInWithGoogle(auth);
   const navigate = useNavigate();
 
   // Get Input Value From Registration Form
@@ -43,16 +39,12 @@ const Register = () => {
     }
   };
 
-  if (loading || googleLoading) {
+  if (loading) {
     return <Loading></Loading>;
   }
 
   if (user) {
     navigate("/");
-  }
-  if (googleError) {
-    googleError.message =
-      "Please authorize with a valid account and give permission to register";
   }
 
   return (
@@ -111,25 +103,7 @@ const Register = () => {
             Already have an account? <Link to="/login">Login</Link>
           </p>
         </Form>
-        <div className="d-flex align-items-center justify-content-center mt-3">
-          <span className="register-hr d-inline-block"></span>
-          <span className="d-inline-block px-2 fw-bold">or</span>
-          <span className="register-hr d-inline-block"></span>
-        </div>
-        <p
-          className={`text-danger fw-bold ${
-            googleError ? "d-block" : "d-none"
-          }`}
-        >
-          {googleError ? googleError.message : ""}
-        </p>
-        <Button
-          onClick={() => signInWithGoogle()}
-          variant="dark"
-          className="fw-bold text-white"
-        >
-          Google Sign In
-        </Button>
+        <SocialLogin></SocialLogin>
       </div>
     </div>
   );

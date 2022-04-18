@@ -27,7 +27,7 @@ const Testimonial = () => {
                 <h5 className="card-title">Rifat Ahmed</h5>
                 <p className="card-text">
                   Last month I went Sundarban by getting help from Travelian and
-                  He help me to explore nicely. Thank you
+                  He helped me to explore nicely the whole area. Thank you
                 </p>
               </div>
             </div>

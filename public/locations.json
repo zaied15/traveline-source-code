@@ -1,21 +1,21 @@
 [
   {
     "id": 1,
-    "name": "Sundarbhan Forest",
+    "name": "Sundarbhan Tour Guide",
     "price": "30",
     "description": "This shot was meant to be more clear and it makes me happy and good mood.",
     "img": "https://i.ibb.co/W08RTcM/boudhayan-bardhan-BQof-Pr-RIPz-U-unsplash.jpg"
   },
   {
     "id": 2,
-    "name": "Saint Martin Island",
+    "name": "Saint Martin Tour Guide",
     "price": "25",
     "description": "Nothing beats sitting beach side in the Caribbean. Just looking at this photo I wanna go back",
     "img": "https://i.ibb.co/nbT5xNz/saintmartin.jpg"
   },
   {
     "id": 3,
-    "name": "Cox's Bazar Beach",
+    "name": "Cox's Bazar Tour Guide",
     "price": "20",
     "description": "Lounge chairs on the beach at the W Hotel luxury resort in the Maldives during sunset.",
     "img": "https://i.ibb.co/CVgfqx1/maldives.jpg"
